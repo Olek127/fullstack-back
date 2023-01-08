@@ -1,7 +1,7 @@
 """
 App Pizza
 """
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, Response
 import persistencia
 
 #from flask import request
@@ -17,3 +17,15 @@ def pizza_post():
     print("Apellidos: " + apellidos)
     persistencia.guardar_pedido(nombre, apellidos)
     return redirect("http://localhost/solicita_pedido.html", code=302)
+
+@app.route("/checksize",methods=['POST'])
+def checksize():
+    """
+    Comprueba disponibilidad de un tamaño de pizza.
+    """
+    tam = request.form.get("size")
+    if tam == "S":
+        mensaje = "No disponible"
+    else:
+        mensaje = "Disponible"
+    return Response(mensaje, 200, {'Access-Control-Allow-Origin': '*'})
