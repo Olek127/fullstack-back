@@ -23,8 +23,8 @@ def checksize():
     """
     Comprueba disponibilidad de un tamaño de pizza.
     """
-    tam = request.form.get("size")
-    if tam == "S":
+    tamm = request.form.get("tam")
+    if tamm == "S":
         mensaje = "No disponible"
     else:
         mensaje = "Disponible"
